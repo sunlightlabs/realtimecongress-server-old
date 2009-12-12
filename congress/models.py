@@ -56,6 +56,7 @@ class Legislator(models.Model):
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     currently_serving = models.BooleanField(default=False)
     govtrack_id = models.CharField(max_length=16, blank=True)
+    bioguide_id = models.CharField(max_length=16, blank=True)
     
     class Meta:
         ordering = ('last_name','first_name')
@@ -64,7 +65,7 @@ class Legislator(models.Model):
         return self.display_name()
     
     def display_name(self):
-        return u"%s %s %s" % (self.title, self.first_name, self.last_name)
+        return u"%s. %s %s" % (self.title, self.first_name, self.last_name)
 
 #
 # legislation related models
