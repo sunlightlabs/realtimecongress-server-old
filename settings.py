@@ -73,6 +73,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'debug_toolbar',
+    'scrapers',
 )
 
 DEBUG_TOOLBAR_CONFIG = {

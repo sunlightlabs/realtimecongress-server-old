@@ -1,4 +1,5 @@
 *.db
 *.pyc
+local_settings.py
 pip-log.txt
 build/
