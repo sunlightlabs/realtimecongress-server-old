@@ -5,5 +5,5 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
-    # url(r'^', include('realtimecongress_server.foo.urls')),
+    url(r'^api/', include('realtimecongress_server.api.urls')),
 )

@@ -73,7 +73,12 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'debug_toolbar',
-    'scrapers',
+    'realtimecongress_server.congress',
+    'realtimecongress_server.documents',
+    'realtimecongress_server.events',
+    'realtimecongress_server.hearings',
+    'realtimecongress_server.scrapers',
+    'realtimecongress_server.api',
 )
 
 DEBUG_TOOLBAR_CONFIG = {

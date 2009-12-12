@@ -1,3 +1,8 @@
 from django.db import models
 
-# Create your models here.
+DOCUMENT_TYPES = (
+    '','','','','','','','','',
+)
+
+class Document(models.Model):
+    url = models.URLField(verify_exists=False, blank=True)
