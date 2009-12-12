@@ -76,7 +76,6 @@ INSTALLED_APPS = (
     'realtimecongress_server.congress',
     'realtimecongress_server.documents',
     'realtimecongress_server.events',
-    'realtimecongress_server.hearings',
     'realtimecongress_server.scrapers',
     'realtimecongress_server.api',
 )
