@@ -1,12 +1,32 @@
 from django.db import models
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
+from django.contrib.localflavor.us.models import USStateField
+
 """
     outstanding:
         Legislation
         * subject terms
         * other resources
 """
+
+TITLE_CHOICES = (
+    ('Com', 'Commissioner'),
+    ('Del', 'Delegate'),
+    ('Rep', 'Representative'),
+    ('Sen', 'Senator'),
+)
+
+PARTY_CHOICES = (
+    ('D', 'Democratic'),
+    ('I', 'Independent'),
+    ('R', 'Republican'),
+)
+
+GENDER_CHOICES = (
+    ('F', 'Female'),
+    ('M', 'Male'),
+)
 
 CHAMBER_CHOICES = (
     ('H', 'House of Representatives'),
@@ -25,13 +45,15 @@ VOTE_CHOICES = (
 #
 
 class Legislator(models.Model):
-    title = models.CharField(max_length=16)
+    title = models.CharField(max_length=3, choices=TITLE_CHOICES)
     first_name = models.CharField(max_length=64)
     last_name = models.CharField(max_length=64)
     suffix = models.CharField(max_length=8, blank=True)
     nickname = models.CharField(max_length=128, blank=True)
-    display_name = models.CharField(max_length=128)
-    party = models.CharField(max_length=1)
+    district = models.CharField(max_length=4, blank=True)
+    state = USStateField(max_length=2)
+    party = models.CharField(max_length=1, choices=PARTY_CHOICES)
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     currently_serving = models.BooleanField(default=False)
     govtrack_id = models.CharField(max_length=16, blank=True)
     
@@ -39,7 +61,10 @@ class Legislator(models.Model):
         ordering = ('last_name','first_name')
     
     def __unicode__(self):
-        return self.display_name
+        return self.display_name()
+    
+    def display_name(self):
+        return u"%s %s %s" % (self.title, self.first_name, self.last_name)
 
 #
 # legislation related models
@@ -57,6 +82,7 @@ class Legislation(models.Model):
     
     class Meta:
         ordering = ('-introduced',)
+        verbose_name_plural = 'legislation'
     
     def __unicode__(self):
         return self.title
@@ -70,7 +96,7 @@ class Action(models.Model):
     ### what else?
     
     class Meta:
-        ordering = ('-datestamp')
+        ordering = ('-datestamp',)
     
     def __unicode__(self):
         return u"????" #### what here?
@@ -82,12 +108,16 @@ class Action(models.Model):
 class RollCall(models.Model):
     legislation = models.ForeignKey(Legislation, related_name="roll_calls")
     datestamp = models.DateTimeField()
+    number = models.IntegerField()
+    congress = models.IntegerField()
+    chamber = models.CharField(max_length=1, choices=CHAMBER_CHOICES)
+    question = models.CharField(max_length=255)
     
     class Meta:
         ordering = ('-datestamp',)
     
     def __unicode__(self):
-        return self.legislation.title
+        return self.question
 
 class Vote(models.Model):
     roll_call = models.ForeignKey(RollCall, related_name="votes")
