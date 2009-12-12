@@ -4,9 +4,9 @@ from realtimecongress_server.congress.models import *
 # legislator
 
 class LegislatorAdmin(admin.ModelAdmin):
-    list_display = ('display_name','nickname','party','currently_serving','govtrack_id')
-    list_filter = ('party')
-    search_fields = ('display_name','nickname','govtrack_id')
+    list_display = ('display_name','nickname','party','state','district','currently_serving','govtrack_id')
+    list_filter = ('party','currently_serving','title','state')
+    search_fields = ('first_name','last_name','nickname','govtrack_id')
 admin.site.register(Legislator, LegislatorAdmin)
 
 # legislation
@@ -28,5 +28,5 @@ class VoteInline(admin.TabularInline):
 
 class RollCallAdmin(admin.ModelAdmin):
     inlines = (VoteInline,)
-    list_display = ('legislation__title','datestamp')
+    #list_display = ('legislation__title','datestamp')
 admin.site.register(RollCall, RollCallAdmin)

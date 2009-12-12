@@ -15,14 +15,14 @@ class Command(NoArgsCommand):
         
         for record in reader:
             
-            govtrack_id = record['govtrack_id'] or None
+            bioguide_id = record['bioguide_id'] or None
             
-            if govtrack_id:
+            if bioguide_id is not None:
                 
                 try:
-                    l = Legislator.objects.get(govtrack_id=govtrack_id)
+                    l = Legislator.objects.get(bioguide_id=bioguide_id)
                 except Legislator.DoesNotExist:
-                    l = Legislator(govtrack_id=govtrack_id)
+                    l = Legislator(bioguide_id=bioguide_id)
             
                 l.title = record['title']
                 l.first_name = record['firstname']
@@ -34,6 +34,7 @@ class Command(NoArgsCommand):
                 l.party = record['party']
                 l.gender = record['gender']
                 l.currently_serving = record['in_office'] == '1'
+                l.govtrack_id = record['govtrack_id']
                 
                 l.save()
             
