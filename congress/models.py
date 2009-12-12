@@ -65,7 +65,7 @@ class Legislator(models.Model):
         return self.display_name()
     
     def display_name(self):
-        return u"%s %s %s" % (self.title, self.first_name, self.last_name)
+        return u"%s. %s %s" % (self.title, self.first_name, self.last_name)
 
 #
 # legislation related models
