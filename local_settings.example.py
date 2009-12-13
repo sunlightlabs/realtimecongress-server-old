@@ -11,7 +11,7 @@ DATABASE_PASSWORD = ''         # Not used with sqlite3.
 DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
 DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
 
-OPEN_CRS_KEY = ''
+OPEN_CRS_KEY = ''               # Open CRS API Key
 
 
 #TEMPLATE_DIRS = (os.path.join(PROJECT_ROOT, 'templates'),)
