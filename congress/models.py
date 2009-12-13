@@ -10,6 +10,19 @@ from django.contrib.localflavor.us.models import USStateField
         * other resources
 """
 
+BILL_TYPE_CHOICES = (
+    ('H.R.', ''),
+    ('H.RES.', ''),
+    ('S.', ''),
+    ('S.R.', ''),
+    ('H.CON.RES.', ''),
+    ('S.CON.RES.', ''),
+    ('H.J.RES.', ''),
+    ('S.J.RES.', ''),
+    ('H.J.RES.', ''),
+    ('S.J.RES.', ''),
+)
+
 TITLE_CHOICES = (
     ('Com', 'Commissioner'),
     ('Del', 'Delegate'),
@@ -74,9 +87,10 @@ class Legislator(models.Model):
 class Legislation(models.Model):
     sponsor = models.ForeignKey(Legislator, related_name="sponsored")
     co_sponsors = models.ManyToManyField(Legislator, related_name="co_sponsored")
-    congress = models.IntegerField()
     chamber = models.CharField(max_length=1, choices=CHAMBER_CHOICES)
-    code = models.CharField(max_length=16)
+    congress = models.IntegerField()
+    type = models.CharField(max_length=16, choices=BILL_TYPE_CHOICES)
+    number = models.IntegerField()
     title = models.CharField(max_length=255)
     summary = models.TextField()
     introduced = models.DateTimeField()
