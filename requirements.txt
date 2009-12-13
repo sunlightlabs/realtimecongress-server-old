@@ -1,4 +1,5 @@
 Django
+BeautifulSoup
 feedparser
 django-debug-toolbar
 -e git://github.com/sunlightlabs/django-feedinator.git#egg=feedinator
