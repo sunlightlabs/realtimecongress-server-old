@@ -2,12 +2,20 @@ from django.db import models
 import datetime
 
 DOCUMENT_TYPES = (
-    ('WN', 'Whip Notice'),
-    ('', ''),
-    ('', ''),
-    ('', ''),
-    ('', ''),
-    ('', ''),
+    ('DWD', 'Democratic Daily Whipline'),
+    ('DWW', 'Democratic Weekly Whip Pack'),
+    ('DPC LB', 'Democratic Policy Committee Legislative Brief'),
+    ('OMB SAP', 'Statement of Administration Policy'),
+    ('CBO CE', 'CBO Cost Estimate'),
+    ('CRS', 'Congressional Research Service'),
+    ('GAO', 'GAO Report'),
+    ('JCT', 'Joint Committee on Taxation'),
+    ('OMB Memo', 'OMB Memo'),
+    ('OMB SAP', 'Statement of Administration Policy'),
+    ('RCR SRP', 'Statement of Republican Policy'),
+    ('RPC LN', 'Republican Policy Committee Legislative Notice'),
+    ('RWD', 'Republian Daily Whipping Post'),
+    ('RWW', 'Republican Weekly Whip Notice'),
 )
 
 class Document(models.Model):
