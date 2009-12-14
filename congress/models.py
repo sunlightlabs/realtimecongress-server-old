@@ -63,7 +63,7 @@ class Legislator(models.Model):
     last_name = models.CharField(max_length=64)
     suffix = models.CharField(max_length=8, blank=True)
     nickname = models.CharField(max_length=128, blank=True)
-    district = models.CharField(max_length=4, blank=True)
+    district = models.CharField(max_length=16, blank=True)
     state = USStateField(max_length=2)
     party = models.CharField(max_length=1, choices=PARTY_CHOICES)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
