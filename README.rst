@@ -7,6 +7,7 @@ Legislation
 Roll Call Votes
 Live floor updates for House and Senate
 Upcoming committee schedules
+CRS Legislative Subject Terms
 
 Documents
 ---------

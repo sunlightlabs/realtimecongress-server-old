@@ -13,5 +13,6 @@ DATABASE_PORT = ''             # Set to empty string for default. Not used with 
 
 OPEN_CRS_KEY = ''               # Open CRS API Key
 
+GOVTRACK_XML_PATH = ''          #path to govtrack xml root
 
 #TEMPLATE_DIRS = (os.path.join(PROJECT_ROOT, 'templates'),)

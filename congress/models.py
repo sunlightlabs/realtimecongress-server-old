@@ -142,6 +142,10 @@ class Vote(models.Model):
     
     def __unicode__(self):
         return u"%s voted %s on %s" % (self.legislator.display_name, self.vote, self.legislation.title)
+        
+class LegislativeSubjectTerm(models.Model):
+    term = models.CharField(max_length=255)
+    parent = models.ForeignKey("self", null=True)
 
 #
 # relations
